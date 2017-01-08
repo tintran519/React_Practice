@@ -4,19 +4,26 @@ import {connect} from 'react-redux';
 
 class UserList extends Component {
 
+createListItems() {
+  return this.props.users.map((user) => {
+    return (
+      <li key={user.id}>{user.first} {user.last}</li>
+      );
+  });
+}
+
   render() {
       return (
           <ul>
-              <li>one</li>
-              <li>two</li>
-              <li>three</li>
+              {this.createListItems()}
           </ul>
         )
   }
 }
 
 //container function
-//takes piece of state, part of store, and sends to component as props
+//takes piece of state, which is part of the store, and passes it to component as a property
+//parameter, state, equals the value of store, so state.users equals allReducers.user
 function mapStateToProps(state) {
   return {
     users: state.users
